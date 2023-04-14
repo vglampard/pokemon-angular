@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
+// Pagination component
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -14,16 +15,15 @@ export class PaginationComponent implements OnInit {
     this.getPagesArray();
   }
 
-  // Uses total number of pokemon to dynamically create an array of consecutive numbers to serve as the navigation buttons
+  // Use total number of pokemon passed down from parent to dynamically create an array of consecutive numbers that serve as the navigation buttons
   getPagesArray(): void {
-    this.pokemonService.getPokemon(0).subscribe((response:any) => {
+    this.pokemonService.getPokemon(0).subscribe((response: any) => {
       const totalPages = response.count / 50;
       const pagesArray = Array.from(
-        { length: totalPages  +1 },
-        (value, index) => index +1
+        { length: totalPages + 1 },
+        (_, index) => index + 1
       );
       this.pagesArray = pagesArray;
     });
   }
-
 }
