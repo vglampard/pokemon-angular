@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonType } from 'PokemonType';
+import { PokemonType } from "../../types/PokemonType"
 import { Router } from '@angular/router';
-
-interface Location {
-  name: string;
-  method?: string;
-}
-
-interface Ability {
-  ability: {name: string, url: string}
-}
+import {Ability, Location} from "../../types/ResultDetailTypes"
 
 @Component({
   selector: 'app-result-detail',
@@ -33,7 +25,7 @@ export class ResultDetailComponent implements OnInit {
     private router: Router
   ) {}
 
-  // Check if default sprite URLs are available, and if so assign them to sprites object. If not, look for two sprites of any type (some have no default sprites, but a couple of others) and assign them for display; if not, register sprites as unavailable.
+  // Check if default sprite URLs are available, and if so assign them to sprites object. If not, look for two sprites of any type (some have no default sprites, but a couple of others!) and assign them for display; if not, register sprites as unavailable.
   getAvailableSprites(sprites: any) {
     if (sprites.front_default && sprites.back_default) {
       this.defaultSprites = {
@@ -61,7 +53,7 @@ export class ResultDetailComponent implements OnInit {
     }
   }
 
-  // Get colour to render on card based on the pokemon's first (or only) type.
+  // Get card colour based on the pokemon's first (or only) type.
   getCardColour(pokemon: PokemonType): string {
     return this.pokemonService.getTypeColour(pokemon.types[0].type.name);
   }
@@ -71,14 +63,13 @@ export class ResultDetailComponent implements OnInit {
     this.pokemonName = this._Activatedroute.snapshot.paramMap.get('name');
     this.pokemonService.getSpecificPokemon(this.pokemonName).subscribe(
       (pokemon) => {
-        console.log('POKEMON:', pokemon);
         this.getAvailableSprites(pokemon.sprites);
         this.pokemonData = pokemon;
 
-        // Get more abilities data
+        // Get more abilities data (this is something I'll be playing around with at the weekend)
         this.getAllAbilityInformation(pokemon.abilities);
 
-        // Use this specific data to make an additional call to the API that returns one location in which the pokemon is encountered.
+        // Use pokemon's data from initial API call to make an additional call that returns one location in which the pokemon is encountered.
         this.pokemonService
           .getEncounters(pokemon.location_area_encounters)
           .subscribe((result) => {
@@ -104,6 +95,7 @@ export class ResultDetailComponent implements OnInit {
     
   }
 
+  // Function I am playing with below
   getAllAbilityInformation(abilitiesArray: Ability[]){
     abilitiesArray.forEach((ability: Ability)=>this.pokemonService.getAbilityInformation(ability.ability.url).subscribe((res)=>console.log("RES:", res.effect_entries.filter((effect:any)=>effect.language.name==="en"))))
   }

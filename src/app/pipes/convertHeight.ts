@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-// Take height in decimetres and convert it to metres and feet/inches, returned as string
+// Take height in decimetres and convert it to metres and feet/inches, returned as string. Could refactor this for concision but it's clearer like this!
 @Pipe({ name: 'convertHeight' })
 export class convertHeightPipe implements PipeTransform{
 transform(height: number): string{

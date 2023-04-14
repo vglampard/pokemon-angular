@@ -7,24 +7,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SplashComponent } from './components/splash/splash.component';
 
 const routes: Routes = [
-
-  { path: '', component: SplashComponent}, 
-  { path: 'pokemon', component: ResultsDisplayComponent}, 
+  { path: '', component: SplashComponent },
+  { path: 'pokemon', component: ResultsDisplayComponent },
+  { path: 'pokemon/:name', component: ResultDetailComponent },
   { path: 'about', component: AboutComponent },
-  {
-    path: 'pokemon/:name',
-    component: ResultDetailComponent,
-  },
-  {
-    path: '404',
-    component: PageNotFoundComponent,
-  },
- 
+  { path: '404', component: PageNotFoundComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

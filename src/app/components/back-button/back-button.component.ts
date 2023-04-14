@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+// needs better naming
 @Component({
   selector: 'app-back-button',
   templateUrl: './back-button.component.html',
@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class BackButtonComponent {
   @Input() routerPath: any;
+  @Input() direction: string;
   constructor(){}
 
   ngOnInit():void{
