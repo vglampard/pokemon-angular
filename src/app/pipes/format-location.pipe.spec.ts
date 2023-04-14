@@ -1,8 +1,8 @@
-import { FormatLocationPipe } from './format-location.pipe';
+import { removeHyphensPipe } from './removeHyphens';
 
 describe('FormatLocationPipe', () => {
   it('create an instance', () => {
-    const pipe = new FormatLocationPipe();
+    const pipe = new removeHyphensPipe();
     expect(pipe).toBeTruthy();
   });
 });

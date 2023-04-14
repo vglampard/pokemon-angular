@@ -1,4 +1,5 @@
 # PokéAPI Directory 
+Responsively designed Angular Pokédex suitable for desktop or mobile. 
 
 ⚡ See [Live Version](https://pokepedia-angular.netlify.app/).
 
