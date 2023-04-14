@@ -1,5 +1,9 @@
 # PokéAPI Directory 
 
+⚡ See [Live Version](https://pokepedia-angular.netlify.app/).
+
+⚡ See [Wireframes](https://www.figma.com/file/M1Ny3q59ZNGWGEf3edytrW/Angular-Pokedex?node-id=0%3A1&t=pnREhYX6NV0h3ZHA-1).
+
 ## Prerequisite
 This task needs to be completed using both Angular and Bootstrap (already included in package.json).  
 
