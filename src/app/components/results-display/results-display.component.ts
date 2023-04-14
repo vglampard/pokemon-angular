@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonType } from "../../types/PokemonType";
+import { PokemonType } from '../../types/PokemonType';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
+// Main component that displays batches of 50 pokemon OR single pokemon returned from specific search, as well as pagination and navigation buttons. 
 @Component({
   selector: 'app-results-display',
   templateUrl: './results-display.component.html',
@@ -17,15 +18,15 @@ export class ResultsDisplayComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private _Activatedroute: ActivatedRoute
-  ) 
-  {}
+  ) {}
 
-  // Get pokemon on component load (converting string from params into number so it can be used to calculate offset)
+  // On load, set page number by pulling number from query parameters. Then use this to A) gfetch a batch of pokemon from the API, and B) set nav buttons state to de/activated.
   ngOnInit(): void {
     this._Activatedroute.queryParams.subscribe((params) => {
       let pageString: string | null = (this.page = params['page']);
       this.page = Number(pageString);
       this.getPokemon();
+      this.setNavButtonState();
     });
   }
 
@@ -40,16 +41,23 @@ export class ResultsDisplayComponent implements OnInit {
       });
   }
 
-  // Get specifc searched pokemon result and set it to display
+  //Use data afrom the initial batch call to make individual calls for each pokemon, and push the data to the dispay array pokemonSet.
+  getPokemonSetDetails(pokemon: PokemonType[]) {
+    pokemon.forEach((result: any) => {
+      this.pokemonService
+        .getSpecificPokemon(result.name)
+        .subscribe((uniqueResponse: any) => {
+          this.pokemonSet.push(uniqueResponse);
+        });
+    });
+  }
+
+  // Get result from a single specific pokemon search and set it to the only item in display array pokemonSet. If no data is returned from the API, alert the user that there is possibly a typo in their search term
   getSearchedPokemon(searchTerm: string) {
-    let res: any = [];
     this.pokemonService.getSpecificPokemon(searchTerm).subscribe(
       (response) => {
-        res.push(response);
-        if (res.length > 0) {
-          this.pokemonSet = [];
-          this.pokemonSet.push(...res);
-        }
+        this.pokemonSet = [];
+        this.pokemonSet.push(response);
       },
       (error) => {
         if (error.status) {
@@ -61,15 +69,8 @@ export class ResultsDisplayComponent implements OnInit {
     );
   }
 
-  //Uses data (names and URLs) from inital batch call to populate pokemon array with individual data for each pokemon
-  getPokemonSetDetails(pokemon: PokemonType[]) {
-    pokemon.forEach((result: any) => {
-      this.pokemonService
-        .getSpecificPokemon(result.name)
-        .subscribe((uniqueResponse: any) => {
-          this.pokemonSet.push(uniqueResponse);
-        });
-    });
+  // Use page number to check if either navigation arrow should be disabled, and set them as required
+  setNavButtonState() {
     this.previousNavState = this.page > 1;
     this.nextNavState = this.page < 26;
   }

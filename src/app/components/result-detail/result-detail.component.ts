@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonType } from "../../types/PokemonType";
+import { PokemonType } from '../../types/PokemonType';
 import { Router } from '@angular/router';
-import { Location} from "../../types/ResultDetailTypes"
+import { Location } from '../../types/ResultDetailTypes';
 
 @Component({
   selector: 'app-result-detail',

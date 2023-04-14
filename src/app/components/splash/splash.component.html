@@ -1,13 +1,7 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
-<img src="../../assets/pokemon-group.png" class="w-50">
-<div class="">
-    <a routerLink="../pokemon" class="btn" [queryParams]="{ page: 1 }">
-      <img
-        src="../../assets/right-arrow.png"
-        alt="back arrow"
-        style="width: 40px"
-      />
-      Go to Poképedia...
-    </a>
-  </div>
+  <img src="../../assets/pokemon-group.png" class="w-50" />
+  <app-back-button
+    routerPath="../pokemon"
+    direction="forward"
+  ></app-back-button>
 </div>
