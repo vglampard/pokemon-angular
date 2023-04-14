@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { PokemonList } from 'src/app/types/PokemonListType';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PokemonType } from "../types/PokemonType";
+import { PokemonType } from '../types/PokemonType';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class PokemonService {
   private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=50';
 
   constructor(private http: HttpClient) {}
 
   // Get batch of 50 pokemon from specific offset
-  getPokemon(offset: number): Observable<PokemonList>{
-    return this.http.get<PokemonList>(`${this.apiUrl}&offset=${offset}`)
+  getPokemon(offset: number): Observable<PokemonList> {
+    return this.http.get<PokemonList>(`${this.apiUrl}&offset=${offset}`);
   }
 
   //Get data for a specific pokemon
@@ -25,7 +24,7 @@ export class PokemonService {
     );
   }
 
-  // Function to get correct colour from type that can be passed into the conditional styling. Initially I tried using ternary chaining here, but it wasn't working beyond two colours - and It's generally bad practice as I understand (although I'm not convinced this is easier to read). I'm not convinced either that here is the best place for it, but I want it accessible from multiple components. 
+  // Get correct colour from type. Initially I tried using ternary chaining here, but it wasn't working beyond two colours - and It's generally bad practice as I understand (although I'm not convinced this is easier to read). I'm not convinced either that here is the best place for it, but I want it accessible from multiple components.
   getTypeColour(type: string): string {
     switch (type) {
       case 'psychic':
@@ -69,19 +68,18 @@ export class PokemonService {
     }
   }
 
-  // Get encounters
-  getEncounters(url: string): Observable<any>{
-    let encountersObj= this.http.get(url);
-    return encountersObj;
-  }
-
-  // Get method of encounter
-  getEncounterMethod(url: string): Observable<any>{
+  // Get encounter location for pokemon
+  getEncounters(url: string): Observable<any> {
     return this.http.get(url);
   }
 
-  getAbilityInformation(ability:string): Observable<any>{
-    console.log("ABILITY COME THROUGH", ability)
-return this.http.get(ability)
-}
+  // Get method of encounter from location
+  getEncounterMethod(url: string): Observable<any> {
+    return this.http.get(url);
+  }
+
+  // Get extra information about ability
+  getAbilityInformation(ability: string): Observable<any> {
+    return this.http.get(ability);
+  }
 }
