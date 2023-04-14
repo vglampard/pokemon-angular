@@ -19,7 +19,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 //Pipe imports
 import { convertHeightPipe } from './pipes/convertHeight';
 import { convertWeightPipe } from './pipes/convertWeight';
-import { removeHyphensPipe } from './pipes/format-location.pipe';
+import { removeHyphensPipe } from './pipes/removeHyphens';
 import { SplashComponent } from './components/splash/splash.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 

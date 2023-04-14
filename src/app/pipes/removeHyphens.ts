@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+// Replaces hyphens in string with spaces
 @Pipe({
   name: 'removeHyphens'
 })
