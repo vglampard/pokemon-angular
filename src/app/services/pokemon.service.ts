@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { PokemonList } from 'PokemonListType';
+import { PokemonList } from 'src/app/types/PokemonListType';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PokemonType } from 'PokemonType';
-import { catchError } from 'rxjs/operators';
+import { PokemonType } from "../types/PokemonType";
 
 @Injectable({
   providedIn: 'root',
 })
 
-// TIDY ALL THIS BIT UP
 export class PokemonService {
   private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=50';
 

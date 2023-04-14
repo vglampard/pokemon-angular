@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonType } from 'PokemonType';
+import { PokemonType } from "../../types/PokemonType";
 import { Router } from '@angular/router';
-
-interface Location {
-  name: string;
-  method?: string;
-}
-
-interface Ability {
-  ability: {name: string, url: string}
-}
+import { Location} from "../../types/ResultDetailTypes"
 
 @Component({
   selector: 'app-result-detail',
@@ -71,12 +63,8 @@ export class ResultDetailComponent implements OnInit {
     this.pokemonName = this._Activatedroute.snapshot.paramMap.get('name');
     this.pokemonService.getSpecificPokemon(this.pokemonName).subscribe(
       (pokemon) => {
-        console.log('POKEMON:', pokemon);
         this.getAvailableSprites(pokemon.sprites);
         this.pokemonData = pokemon;
-
-        // Get more abilities data
-        this.getAllAbilityInformation(pokemon.abilities);
 
         // Use this specific data to make an additional call to the API that returns one location in which the pokemon is encountered.
         this.pokemonService
@@ -85,7 +73,7 @@ export class ResultDetailComponent implements OnInit {
             if (result.length > 0) {
               this.location.name = result[0].location_area.name;
 
-              // Use data returned from this call to make another call, this time returning a method by which one might ecounter that pokemon in that location. If no encounters are found, the template uses *ngIf to show placeholder text instead. 
+              // Use data returned from this call to make another call, this time returning a method by which one might ecounter that pokemon in that location. If no encounters are found, the template uses *ngIf to show placeholder text instead.
               this.pokemonService
                 .getEncounterMethod(result[0].location_area.url)
                 .subscribe(
@@ -96,15 +84,10 @@ export class ResultDetailComponent implements OnInit {
             }
           });
       },
-      // If someone uses an incorrect pokemon name in the URL, the API call for that 'pokemon' will fail and the user will be redirected to a 404 page, where they can return to the poképedia. 
+      // If someone uses an incorrect pokemon name in the URL, the API call for that 'pokemon' will fail and the user will be redirected to a 404 page, where they can return to the poképedia.
       (error) => {
         this.router.navigate(['/404']);
       }
     );
-    
-  }
-
-  getAllAbilityInformation(abilitiesArray: Ability[]){
-    abilitiesArray.forEach((ability: Ability)=>this.pokemonService.getAbilityInformation(ability.ability.url).subscribe((res)=>console.log("RES:", res.effect_entries.filter((effect:any)=>effect.language.name==="en"))))
   }
 }
