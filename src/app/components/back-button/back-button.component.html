@@ -1,7 +1,7 @@
 <div class="pb-5 mb-5 back">
     <a [routerLink]="routerPath" ngbTooltip="Tooltip on left" [queryParams]="{ page: 1 }" class="btn">
       <img
-        src="../../assets/left-arrow.png"
+        [src]="direction === 'forward' ? '../../assets/right-arrow.png' :'../../assets/left-arrow.png' "
         alt="back arrow"
         style="width: 40px"
       />
