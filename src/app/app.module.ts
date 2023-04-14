@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // Component imports
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,6 +21,7 @@ import { convertHeightPipe } from './pipes/convertHeight';
 import { convertWeightPipe } from './pipes/convertWeight';
 import { removeHyphensPipe } from './pipes/format-location.pipe';
 import { SplashComponent } from './components/splash/splash.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { SplashComponent } from './components/splash/splash.component';
     SearchBarComponent,
     removeHyphensPipe,
     SplashComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
