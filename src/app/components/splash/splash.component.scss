@@ -1,22 +1,8 @@
-img{
-    animation: zoom-in-zoom-out 1s ease ;
-}
+
 
 body{
     height: 100vh;
 }
-
-@keyframes zoom-in-zoom-out {
-    0% {
-      transform: scale(2, 2);
-    }
-    50% {
-      transform: scale(1.5, 1.5);
-    }
-    100% {
-      transform: scale(1, 1);
-    }
-  }
 
   a{
     transition: transform .2s;
