@@ -5,6 +5,7 @@ import { PokemonType } from '../../types/PokemonType';
 import { Router } from '@angular/router';
 import { Location } from '../../types/ResultDetailTypes';
 
+// Component displaying data for specific pokemon
 @Component({
   selector: 'app-result-detail',
   templateUrl: './result-detail.component.html',
@@ -53,12 +54,12 @@ export class ResultDetailComponent implements OnInit {
     }
   }
 
-  // Get colour to render on card based on the pokemon's first (or only) type.
+  // Get card colour based on the pokemon's first (or only) type.
   getCardColour(pokemon: PokemonType): string {
     return this.pokemonService.getTypeColour(pokemon.types[0].type.name);
   }
 
-  // On init, pull the pokemon's name from the URL parameters and use it to call the pokemon's specific data from the api.
+  // On init, pull the pokemon's name from the URL parameters and use it to call the pokemon's specific data from the API.
   ngOnInit(): void {
     this.pokemonName = this._Activatedroute.snapshot.paramMap.get('name');
     this.pokemonService.getSpecificPokemon(this.pokemonName).subscribe(
