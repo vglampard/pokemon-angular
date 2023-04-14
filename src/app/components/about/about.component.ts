@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+// About section
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+// Reusable back button, the arrow direction and the route can be customised
 @Component({
   selector: 'app-back-button',
   templateUrl: './back-button.component.html',
