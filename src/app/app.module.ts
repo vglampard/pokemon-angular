@@ -22,6 +22,7 @@ import { convertWeightPipe } from './pipes/convertWeight';
 import { removeHyphensPipe } from './pipes/removeHyphens';
 import { SplashComponent } from './components/splash/splash.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
     removeHyphensPipe,
     SplashComponent,
     BackButtonComponent,
+    TooltipComponent,
   ],
   imports: [
     BrowserModule,

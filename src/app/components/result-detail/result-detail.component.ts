@@ -19,6 +19,7 @@ export class ResultDetailComponent implements OnInit {
     front?: any;
     back?: any;
   };
+  allAbilitiesInfo: any = []
   location: Location = { name: '', method: '' };
   constructor(
     private pokemonService: PokemonService,
@@ -95,7 +96,6 @@ export class ResultDetailComponent implements OnInit {
 
   // Function I am playing with below
   getAllAbilityInformation(abilitiesArray: Ability[]) {
-    let allAbilitiesInfo: any = [];
     abilitiesArray.forEach((ability: Ability) => {
       this.pokemonService
         .getAbilityInformation(ability.ability.url)
@@ -108,9 +108,9 @@ export class ResultDetailComponent implements OnInit {
             effect: detail[0].effect,
             summary: detail[0].short_effect,
           };
-          allAbilitiesInfo.push(ability);
+          this.allAbilitiesInfo.push(ability);
         });
     });
-    console.log('ABILITIES ARRAY AFTER ADDED:', allAbilitiesInfo);
+    console.log('ABILITIES ARRAY AFTER ADDED:', this.allAbilitiesInfo);
   }
 }
