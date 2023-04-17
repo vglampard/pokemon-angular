@@ -3,7 +3,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonType } from '../../types/PokemonType';
 import { Router } from '@angular/router';
-import { Location } from '../../types/ResultDetailTypes';
+import { Location, Ability } from '../../types/ResultDetailTypes';
 
 // Component displaying data for specific pokemon
 @Component({
@@ -66,7 +66,7 @@ export class ResultDetailComponent implements OnInit {
       (pokemon) => {
         this.getAvailableSprites(pokemon.sprites);
         this.pokemonData = pokemon;
-
+        console.log('POKEMON:', pokemon);
         // Use this specific data to make an additional call to the API that returns one location in which the pokemon is encountered.
         this.pokemonService
           .getEncounters(pokemon.location_area_encounters)
@@ -84,11 +84,33 @@ export class ResultDetailComponent implements OnInit {
                 );
             }
           });
+        this.getAllAbilityInformation(pokemon.abilities);
       },
       // If someone uses an incorrect pokemon name in the URL, the API call for that 'pokemon' will fail and the user will be redirected to a 404 page, where they can return to the poképedia.
-      (error) => {
+      (_) => {
         this.router.navigate(['/404']);
       }
     );
+  }
+
+  // Function I am playing with below
+  getAllAbilityInformation(abilitiesArray: Ability[]) {
+    let allAbilitiesInfo: any = [];
+    abilitiesArray.forEach((ability: Ability) => {
+      this.pokemonService
+        .getAbilityInformation(ability.ability.url)
+        .subscribe((res) => {
+          let detail = res.effect_entries.filter(
+            (effect: any) => effect.language.name === 'en'
+          )
+          let ability = {
+            name: res.name,
+            effect: detail[0].effect,
+            summary: detail[0].short_effect,
+          };
+          allAbilitiesInfo.push(ability);
+        });
+    });
+    console.log('ABILITIES ARRAY AFTER ADDED:', allAbilitiesInfo);
   }
 }
