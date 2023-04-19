@@ -22,7 +22,7 @@
         *ngIf="!this.defaultSprites.available"
         class="d-flex justify-content-center py-2"
       >
-        <img src="../../assets/no-image.png" class="w-25" />
+        <img src="../../assets/no-image.png" a;t="no image found" class="w-25" />
       </div>
     </div>
     <div class="border border-dark rounded-bottom bg-warning p-2">
@@ -44,11 +44,13 @@
           <p>Abilities:</p>
           <div class="d-flex align-items-center">
             <p
-              *ngFor="let ability of pokemonData.abilities"
-              class="px-1 rounded text-center border m-1 border-dark"
+              *ngFor="let ability of allAbilitiesInfo"
+              class="px-1 rounded text-center border m-1 border-dark ability"
               style="background-color: #f3d74c"
-            >
-              {{ ability["ability"]["name"] | titlecase }}
+              data-toggle="tooltip"
+              title={{ability.summary+ability.effect}}
+              >
+              {{ ability.name | titlecase }}
             </p>
           </div>
         </div>

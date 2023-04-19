@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./results-display.component.scss'],
 })
 export class ResultsDisplayComponent implements OnInit {
-  page: number = 1;
+  page= 1;
   totalPokemon: number;
   pokemonSet: any = [];
   nextNavState: boolean;
@@ -23,8 +23,7 @@ export class ResultsDisplayComponent implements OnInit {
   // On load, set page number by pulling number from query parameters. Then use this to A) gfetch a batch of pokemon from the API, and B) set nav buttons state to de/activated.
   ngOnInit(): void {
     this._Activatedroute.queryParams.subscribe((params) => {
-      let pageString: string | null = (this.page = params['page']);
-      this.page = Number(pageString);
+      this.page = Number(params['page']);
       this.getPokemon();
       this.setNavButtonState();
     });

@@ -2,6 +2,11 @@
   filter: drop-shadow(10px 10px 4px #060616);
 }
 
+a:focus{
+  border: solid black 3px;    
+  transform: translate(2px, 2px);
+}
+
 p{
   font-size: 0.7rem;
 }
