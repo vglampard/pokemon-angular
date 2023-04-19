@@ -68,7 +68,6 @@ export class ResultDetailComponent implements OnInit {
       (pokemon) => {
         this.getAvailableSprites(pokemon.sprites);
         this.pokemonData = pokemon;
-        console.log('POKEMON:', pokemon);
         // Use this specific data to make an additional call to the API that returns one location in which the pokemon is encountered.
         this.pokemonService
           .getEncounters(pokemon.location_area_encounters)
