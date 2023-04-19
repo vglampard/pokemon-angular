@@ -16,13 +16,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ResultDetailComponent } from './components/result-detail/result-detail.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 //Pipe imports
 import { convertHeightPipe } from './pipes/convertHeight';
 import { convertWeightPipe } from './pipes/convertWeight';
 import { removeHyphensPipe } from './pipes/removeHyphens';
 import { SplashComponent } from './components/splash/splash.component';
-import { BackButtonComponent } from './components/back-button/back-button.component';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

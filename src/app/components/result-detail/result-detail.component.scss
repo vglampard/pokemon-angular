@@ -11,6 +11,10 @@ p {
   transform: scale(1.4);
 }
 
+.ability:hover{
+  transform: translate(2px, 2px);
+}
+
 a {
   transition: transform 0.2s;
 }
