@@ -21,6 +21,7 @@ export class ResultDetailComponent implements OnInit {
   };
   allAbilitiesInfo: any = []
   location: Location = { name: '', method: '' };
+  
   constructor(
     private pokemonService: PokemonService,
     private _Activatedroute: ActivatedRoute,
