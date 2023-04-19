@@ -4,23 +4,19 @@
   background-color: #fcce19;
 }
 
-.arrow {
-  width: 20px;
-}
+
 .card:hover {
   background-color: #fff4da;
   transform: translate(2px, 2px);
 }
 
-.card:focus {
-  background-color: #fff4da;
-  transform: translate(2px, 2px);
-}
 
 button:hover {
   transform: translate(2px, 2px);
 }
-
+button:focus {
+  transform: translate(2px, 2px);
+}
 .nav-arrow {
   height: 50px;
   position: fixed;
