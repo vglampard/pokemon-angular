@@ -36,7 +36,7 @@ export class ResultDetailComponent implements OnInit {
         back: sprites.back_default,
       };
     } else {
-      let allSprites = Object.entries(sprites).filter(
+      const allSprites = Object.entries(sprites).filter(
         (sprite) => typeof sprite[1] === 'string'
       );
       if (allSprites.length > 1) {
@@ -100,10 +100,10 @@ export class ResultDetailComponent implements OnInit {
       this.pokemonService
         .getAbilityInformation(ability.ability.url)
         .subscribe((res) => {
-          let detail = res.effect_entries.filter(
+          const detail = res.effect_entries.filter(
             (effect: any) => effect.language.name === 'en'
           )
-          let ability = {
+          const ability = {
             name: res.name,
             effect: detail[0].effect,
             summary: detail[0].short_effect,
@@ -111,6 +111,6 @@ export class ResultDetailComponent implements OnInit {
           this.allAbilitiesInfo.push(ability);
         });
     });
-    console.log('ABILITIES ARRAY AFTER ADDED:', this.allAbilitiesInfo);
+  
   }
 }
