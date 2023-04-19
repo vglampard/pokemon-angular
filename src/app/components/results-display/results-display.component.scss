@@ -12,6 +12,11 @@
   transform: translate(2px, 2px);
 }
 
+.card:focus {
+  background-color: #fff4da;
+  transform: translate(2px, 2px);
+}
+
 button:hover {
   transform: translate(2px, 2px);
 }
