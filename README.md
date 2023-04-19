@@ -12,4 +12,4 @@ Responsively designed Angular Pokédex suitable for desktop or mobile.
 #### Serve Project
 `ng serve`
 
-![Group image of pokemon](https://github.com/vglampard/pokemon-angular/blob/main/src/assets/pokemon-group.png)
+![Group image of pokemon](https://github.com/vglampard/pokemon-angular/blob/main/src/assets/pokemon-group.webp)

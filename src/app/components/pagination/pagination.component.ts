@@ -17,7 +17,7 @@ export class PaginationComponent implements OnInit {
 
   // Use total number of pokemon passed down from parent to dynamically create an array of consecutive numbers that serve as the navigation buttons
   getPagesArray(): void {
-    this.pokemonService.getPokemon(0).subscribe((response: any) => {
+    this.pokemonService.getPokemon(0).subscribe((response) => {
       const totalPages = response.count / 50;
       const pagesArray = Array.from(
         { length: totalPages + 1 },

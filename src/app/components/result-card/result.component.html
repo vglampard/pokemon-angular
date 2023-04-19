@@ -1,17 +1,17 @@
-<a routerLink="../pokemon/{{ pokemon.name }}" class="btn card-body p-0 w-100">
+<a routerLink="../pokemon/{{ pokemon.name }}" class="btn card-body p-0 mb-1 w-100 ">
   <div class="mb-2" [style.background-color]="types[0].colour">
     <div
       class="d-flex align-items-center my-2 p-2"
       style="background-color: #f7f0cc"
     >
       <img
-        src="../../../assets/pokeball-icon.png"
+        src="../../../assets/pokeball-icon.webp"
         alt="pokeball icon"
-        style="max-width: 20px; max-height: 20px"
+        style="width: 20px; height: 20px"
       />
-      <h6 class="m-0 px-2 font-weight-bold">
+      <h1 class="m-0 px-2 font-weight-bold fs-6">
         {{ pokemon.species.name | titlecase | removeHyphens }}
-      </h6>
+      </h1>
     </div>
     <img
       [src]="displayImage"

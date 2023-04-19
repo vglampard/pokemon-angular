@@ -34,6 +34,6 @@ export class ResultComponent implements OnInit {
         ? Object.entries(this.pokemon.sprites).filter(
             (sprite) => typeof sprite[1] === 'string'
           )[0][1]
-        : '../../assets/no-image.png';
+        : '../../assets/no-image.webp';
   }
 }
